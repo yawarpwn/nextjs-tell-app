@@ -2,13 +2,14 @@
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import { PDFDownloadLink, PDFViewer, usePDF } from '@react-pdf/renderer';
-import PDFQuotation from '../PDF/PDFQuotation';
+import PDFQuotation from './PDF/PDFQuotation';
+import { Button } from '@nextui-org/button'
 // const PDFQuotation = dynamic(() => import('../../components/PDF/PDFQuotation.jsx'), { ssr: false })
 
 
 export default function Invoice() {
   const [isClient, setIsClient] = useState(false)
-  console.log({PDFQuotation})
+  console.log({ PDFQuotation })
 
   useEffect(() => {
     setIsClient(true)
@@ -33,20 +34,8 @@ export default function Invoice() {
 
   return (
     <>
-      <h2>Invoice</h2>
-      {isClient && (
-        <PDFViewer width="500px" height="800px">
-          <PDFQuotation quotation={quo} />
-        </PDFViewer>
-      )}
-
-      {/* <Layout /> */}
-
-
-      {/* Download */}
-
+      <Button>click</Button>
     </>
-
   )
 }
       // {/* <PDFDownloadLink document={<Layout />} fileName="invoice.pdf"> */}
