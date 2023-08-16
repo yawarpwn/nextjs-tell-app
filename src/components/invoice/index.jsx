@@ -2,35 +2,41 @@
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import { PDFDownloadLink, PDFViewer, usePDF } from '@react-pdf/renderer';
-const Layout = dynamic(import('../invoice/Layout.jsx'), { ssr: false });
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import PDFQuotation from '../PDF/PDFQuotation';
+// const PDFQuotation = dynamic(() => import('../../components/PDF/PDFQuotation.jsx'), { ssr: false })
 
 
 export default function Invoice() {
-  console.log({ usePDF })
   const [isClient, setIsClient] = useState(false)
+  console.log({PDFQuotation})
 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
+  const quo = {
+    id: '10',
+    quo_number: 5000,
+    company: 'Neyda y CAra de qlos',
+    date: new Date(),
+    address: 'Maquinaria 325',
+    quotation_items: [
+      {
+        id: '88',
+        description: 'Fibra de vidrio 4mm',
+        price: 10,
+        qty: 10,
+        unit_size: '30x30cm'
+      }
+    ]
+  }
+
   return (
     <>
-      <Layout />
       <h2>Invoice</h2>
       {isClient && (
-
-        <PDFViewer width="100%" height="100%">
-          <Document>
-            <Page size="A4" >
-              <View>
-                <Text>Section #1</Text>
-              </View>
-              <View >
-                <Text>Section #2</Text>
-              </View>
-            </Page>
-          </Document>
+        <PDFViewer width="500px" height="800px">
+          <PDFQuotation quotation={quo} />
         </PDFViewer>
       )}
 
