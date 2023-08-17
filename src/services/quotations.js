@@ -27,6 +27,18 @@ export async function getQuotations() {
 
 }
 
+export async function getQuotation ({ quo_number}) {
+  const { data, error } = await client
+    .from('cotizaciones')
+    .select('*')
+    .eq('quo_number', quo_number)
+  if (error) {
+    throw error
+  }
+  return data[0]
+
+}
+
 export async function insertQuotation({quoToInsert}) {
   const { data, error } = await client
     .from('cotizaciones')

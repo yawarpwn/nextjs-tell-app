@@ -6,3 +6,8 @@ export const getTotal = () => {
   }
 
 }
+
+export function capitalize(str) {
+  return str 
+  // return str.charAt(0).toUpperCase() + str
+}
